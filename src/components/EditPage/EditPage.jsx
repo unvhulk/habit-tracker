@@ -1,5 +1,5 @@
 import React from "react";
-import "./MyHabitPage.css";
+// import "./MyHabitPage.css";
 import home from "assets/Home.png";
 import label from "assets/LabelSelect.png";
 import archive from "assets/Archive.png";
@@ -12,24 +12,22 @@ import deleteLogo from "assets/Delete.png";
 // import downArrow from "assets/DownArrow.png";
 import profilePic from "assets/Profile Pic.png";
 import logout from "assets/Logout.png";
-import { useNavigate } from "react-router-dom";
 
-export const MyHabitPage = () => {
-	let navigate = useNavigate();
+export const EditPage = () => {
 	return (
 		<div className='MyHabit-container'>
 			<div className='MyHabit-navbar'>
-				<h1 onClick={() => navigate("/")}>
+				<h1>
 					<span>My</span>Website
 				</h1>
 			</div>
 			<div className='MyHabit-main'>
 				<aside className='MyHabit-left-container'>
 					<div className='MyHabit-left-top'>
-						<div onClick={() => navigate("/home")}>
+						<div>
 							<img src={home} alt='' /> Home
 						</div>
-						<div className='Active-aside' onClick={() => navigate("/habit")}>
+						<div className='Active-aside'>
 							<img src={label} alt='' /> Labels
 						</div>
 						<div>
@@ -60,7 +58,7 @@ export const MyHabitPage = () => {
 					<div className='MyHabit-right-form'>
 						<div className='MyHabit-right-form-container'>
 							<div className='MyHabit-form-heading'>
-								<div>{"My Habit"}</div>
+								<div>{"Edit Habit"}</div>
 								<div>
 									<img src={achiveBox} alt='' />
 									<img src={edit} alt='' />

@@ -9,7 +9,7 @@ export const Landing = () => {
 		<div className='Landing-container'>
 			<div className='Landing-left'>
 				<div className='Landing-left-container'>
-					<div className='Landing-heading-container'>
+					<div className='Landing-heading-container' onClick={() => nav("/")}>
 						<h1>
 							<span>My</span>Website
 						</h1>
@@ -26,7 +26,7 @@ export const Landing = () => {
 						</p>
 					</div>
 					<div className='Landing-btn-container'>
-						<div className='Landing-btn' onClick={() => nav("./home")}>
+						<div className='Landing-btn' onClick={() => nav("/home")}>
 							Join now
 						</div>
 						<p>Already have an account?</p>

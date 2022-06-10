@@ -12,6 +12,7 @@
 .Home-navbar h1 {
 	font-weight: 700;
 	font-size: 18px;
+	cursor: pointer;
 }
 .Home-navbar span {
 	color: #5348c7;

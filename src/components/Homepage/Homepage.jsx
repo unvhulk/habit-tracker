@@ -10,23 +10,23 @@ import logout from "assets/Logout.png";
 import { useNavigate } from "react-router-dom";
 
 export const Homepage = () => {
-	let nav = useNavigate();
+	let navigate = useNavigate();
+
 	return (
 		<div className='Home-container'>
 			<div className='Home-navbar'>
-				<h1>
+				<h1 onClick={() => navigate("/")}>
 					<span>My</span>Website
 				</h1>
 			</div>
 			<div className='Home-main'>
 				<aside className='Home-left-container'>
 					<div className='Home-left-top'>
-						<div className='Active-aside'>
+						<div className='Active-aside' onClick={() => navigate("/home")}>
 							<img src={home} alt='' />
-							{/* <FontAwesomeIcon icon='fa-solid fa-coffee' size='lg' /> */}
 							Home
 						</div>
-						<div>
+						<div onClick={() => navigate("/habit")}>
 							<img src={label} alt='' /> Labels
 						</div>
 						<div>
@@ -44,9 +44,7 @@ export const Homepage = () => {
 						</div>
 						<div>
 							<div>Tanay Pratap</div>
-							<div onClick={() => nav("./habit", { replace: true })}>
-								View Profile
-							</div>
+							<div onClick={() => navigate("/habit")}>View Profile</div>
 						</div>
 
 						<div>
