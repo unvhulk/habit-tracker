@@ -16,7 +16,7 @@ export const Signup = () => {
 	// States for checking the errors
 	const [submitted, setSubmitted] = useState(false);
 	const [formErrors, setFormErrors] = useState({});
-	const { error, setError } = useAuth();
+	const { error } = useAuth();
 
 	// Handling input
 	const handleChange = (e) => {
