@@ -18,26 +18,20 @@
 	color: #5348c7;
 }
 .Home-main {
-	/* background-color: lightgreen; */
 	display: grid;
-	/* grid-template-columns: 30% 70%; */
 	grid-template-columns: 8% 22% 65% 5%;
 }
 .Home-left-container {
-	/* background-color: blueviolet; */
 	grid-column: 2/3;
 	display: grid;
 	grid-template-rows: 90% 10%;
 }
 .Home-right-container {
-	/* background-color: brown; */
-	grid-column: 3/4;
 	display: grid;
 	grid-template-rows: 35% 65%;
 }
 /* ------------------------- Aside section ----------------------------- */
 .Home-left-top {
-	/* background-color: darkcyan; */
 	display: grid;
 	grid-template-rows: 10% 10% 10% 10%;
 	font-weight: 400;
@@ -50,7 +44,6 @@
 }
 .Home-left-bottom {
 	padding: 5px;
-	/* background-color: yellow; */
 	display: grid;
 	grid-template-columns: 20% 70% 10%;
 }
@@ -62,8 +55,6 @@
 	color: #5348c7;
 }
 .Home-left-bottom > div:nth-child(2) > div:nth-child(1) {
-	/* font-size: xx-small; */
-	/* color: #5348c7; */
 	font-weight: 600;
 	font-size: 16px;
 }
@@ -72,22 +63,20 @@
 }
 /* --------------------------- Main section ------------------------------ */
 .Home-right-profile {
-	/* background-color: aquamarine; */
 	display: grid;
 	grid-template-rows: 20% 80%;
 	padding-top: 30px;
 }
 .Home-right-profile-heading {
-	/* height: 150px; */
 	display: grid;
-	grid-template-columns: 30% 60% 10%;
-	/* border: 2px solid red; */
+	grid-template-columns: 90% 10%;
 }
 .Home-right-profile-heading > div:nth-child(2) {
-	/* border: 2px solid red; */
-	grid-column: 3/4;
+	grid-column: 2/3;
 	color: #5348c7;
 	font-weight: 500;
+	display: flex;
+	align-items: center;
 }
 
 .Home-right-profile-cards {
@@ -105,12 +94,10 @@
 	padding-top: 10px;
 }
 .Home-right-profile-cards > div {
-	/* border: 2px solid red; */
 	margin-right: 10px;
 	margin-left: -5px;
 }
 .Home-right-habits {
-	/* background-color: gray; */
 	padding-top: 10px;
 	display: grid;
 	grid-template-rows: 10% 45% 45%;
@@ -124,8 +111,7 @@
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .Home-right-habits-active > div:nth-child(2) > div {
-	margin-right: 10px;
-	margin-left: -5px;
+	margin-right: 5px;
 	display: grid;
 	grid-template-rows: 30% 45% 10%;
 	padding: 1rem;
@@ -148,7 +134,7 @@
 }
 .Home-right-habits-heading {
 	display: grid;
-	grid-template-columns: 20% 65% 15%;
+	grid-template-columns: 20% 64% 16%;
 }
 .Cards-heading-font {
 	font-weight: 600;
@@ -158,6 +144,7 @@
 	grid-column: 3/4;
 	color: #5348c7;
 	font-weight: 500;
+	cursor: pointer;
 }
 
 .Home-right-habits-completed {
@@ -175,7 +162,6 @@
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .Home-right-habits-completed-tasks > div {
-	/* border: 2px solid red; */
 	margin-right: 5px;
 	display: grid;
 	grid-template-rows: 30% 45% 10%;
@@ -205,9 +191,7 @@
 	padding-top: 2px;
 	font-size: 5px;
 	line-height: 16px;
-	/* border: 2px solid green; */
 	color: white;
-	/* width: 2rem; */
 	height: 1rem;
 	background: #60a5fa;
 }

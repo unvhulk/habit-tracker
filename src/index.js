@@ -6,15 +6,19 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import { makeServer } from "server";
+import { AuthProvider } from "contexts/auth-context";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-
+makeServer();
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Provider store={store}>
-				<App />
+				<AuthProvider>
+					<App />
+				</AuthProvider>
 			</Provider>
 		</BrowserRouter>
 	</React.StrictMode>

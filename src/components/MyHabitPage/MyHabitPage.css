@@ -39,6 +39,7 @@
 	font-size: 16px;
 }
 .MyHabit-left-top > div {
+	cursor: pointer;
 	display: grid;
 	grid-template-columns: 12% 26% 62%;
 }
