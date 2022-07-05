@@ -1,6 +1,5 @@
 .Landing-container {
 	display: grid;
-	/* grid-template-rows: 1fr; */
 	grid-template-columns: 1fr 1fr;
 	background-color: white;
 	color: black;
@@ -11,13 +10,11 @@
 }
 .Landing-left {
 	grid-column: 1/2;
-	/* background-color: red; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 .Landing-right {
-	/* background-color: blue; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -30,7 +27,6 @@
 }
 .Landing-left-container {
 	height: 100%;
-	/* background-color: green; */
 	width: 80%;
 	display: grid;
 	margin: auto;

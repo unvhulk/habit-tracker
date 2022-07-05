@@ -1,0 +1,55 @@
+.Signup-form {
+	text-align: center;
+	background-color: white;
+	display: grid;
+	color: black;
+	border-radius: 2rem;
+	box-shadow: 0px 4px 40px rgba(9, 7, 27, 0.08);
+	border-radius: 40px;
+	margin: 1.4rem 25rem 1.4rem 25rem;
+	font-family: "Poppins";
+}
+.Signup-form > div:nth-child(1) > h1 > span {
+	font: "Poppins";
+	color: #5348c7;
+	font-weight: 700;
+}
+
+.Signup-form > div:nth-child(1) {
+	height: 4rem;
+}
+
+.label {
+	display: block;
+	font-size: small;
+	color: black;
+	padding: 5px;
+	margin-left: 5rem;
+	text-align: start;
+}
+
+.input {
+	font-size: medium;
+	padding: 5px;
+	margin: 2px;
+	width: 55%;
+	outline: none;
+}
+
+.btn {
+	color: white;
+	background-color: #5348c7;
+	border-radius: 5px;
+	font-size: medium;
+	display: block;
+	padding: 5px;
+	margin: 10px auto;
+	cursor: pointer;
+}
+.error-msg {
+	margin: 2px;
+	height: 10px;
+	color: red;
+	font-size: x-small;
+	font-weight: 600;
+}

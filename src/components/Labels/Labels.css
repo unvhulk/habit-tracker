@@ -1,0 +1,63 @@
+.Labels-right-container {
+	display: grid;
+	grid-template-columns: 20% 60% 20%;
+	grid-template-rows: 20% 80%;
+}
+.Labels-search-container {
+	grid-row: 1/2;
+	grid-column: 2/3;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+}
+.Labels-search-bar {
+	grid-row: 2/3;
+	border: 1px solid gray;
+	background-color: white;
+	display: grid;
+	grid-template-columns: 5% 90% 5%;
+	align-items: center;
+	justify-items: center;
+	padding: 10px;
+	border-radius: 5px;
+}
+.Labels-search-bar > input {
+	border: none;
+	width: 98%;
+	border: none;
+	outline: none;
+}
+.Labels-search-bar > input:active {
+	border: none;
+	outline: none;
+}
+.Labels-list-container {
+	grid-row: 2/3;
+	grid-column: 2/3;
+}
+.Labels-list-heading {
+	display: grid;
+	grid-template-columns: 72% 28%;
+	padding: 10px;
+	font-family: "Montserrat";
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.Labels-list-heading > div:nth-child(2) {
+	color: rgba(83, 72, 199, 1);
+}
+.Labels-list-items {
+	padding: 10px;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+}
+.Labels-list-items > div {
+	display: grid;
+	grid-template-columns: 95% 5%;
+	align-items: center;
+	padding-bottom: 10px;
+}
