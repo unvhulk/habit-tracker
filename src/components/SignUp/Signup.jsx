@@ -20,7 +20,7 @@ export const Signup = () => {
 
 	// Handling input
 	const handleChange = (e) => {
-		console.log(e.target.name);
+		console.log(error);
 		const { name, value } = e.target;
 		setUser({ ...user, [name]: value });
 	};
@@ -73,9 +73,7 @@ export const Signup = () => {
 					<span>Sign</span>up
 				</h1>
 			</div>
-			<p className='error-msg'>
-				{error === undefined ? `` : `Error: ${error?.[0]}`}
-			</p>
+			<p className='error-msg'>{error?.[0]}</p>
 			<form>
 				{/* Labels and inputs for form data */}
 				<label className='label'>First Name</label>
