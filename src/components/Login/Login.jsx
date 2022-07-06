@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { useAuth } from "contexts/auth-context";
-import "./Signup.css";
-import { Link } from "react-router-dom";
+import "./Login.css";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-
-export const Signup = () => {
+export const Login = () => {
 	const [user, setUser] = useState({
-		firstname: "",
-		lastname: "",
 		email: "",
 		password: "",
-		confirmPassword: "",
 	});
-	const { signupHandler } = useAuth();
+	const { loginHandler } = useAuth();
+	const location = useLocation();
 
 	// States for checking the errors
 	const [submitted, setSubmitted] = useState(false);
@@ -37,12 +34,6 @@ export const Signup = () => {
 	const validate = (values) => {
 		const errors = {};
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-		if (!values.firstname) {
-			errors.firstname = "Firstname is required";
-		}
-		if (!values.lastname) {
-			errors.lastname = "Lastname is required";
-		}
 		if (!values.email) {
 			errors.email = "Email is required";
 		} else if (!emailRegex.test(values.email)) {
@@ -50,57 +41,30 @@ export const Signup = () => {
 		}
 		if (!values.password) {
 			errors.password = "Password is required";
-		} else if (values.password.length < 5) {
-			errors.password = "Password must be more than 6 characters";
-		}
-		if (!values.confirmPassword) {
-			errors.confirmPassword = "Confirm Password is required";
-		} else if (values.confirmPassword !== values.password) {
-			errors.confirmPassword = "Passwords do not match";
 		}
 		return errors;
 	};
 
 	useEffect(() => {
 		if (Object?.keys(formErrors).length === 0 && submitted) {
-			signupHandler(user);
+			loginHandler(user);
 		}
 	}, [formErrors]);
 
 	useEffect(() => {
 		setError("");
-	}, [user]);
+	}, [user.email, user.password, location.pathname]);
+
 	return (
-		<div className='Signup-form'>
+		<div className='Login-form'>
 			<div>
 				<h1>
-					<span>Sign</span>up
+					<span>Log</span>In
 				</h1>
 			</div>
 			<p className='error-msg'>{error?.[0]}</p>
 			<form>
 				{/* Labels and inputs for form data */}
-				<label className='label'>First Name</label>
-				<input
-					name='firstname'
-					onChange={handleChange}
-					className='input'
-					value={user.name}
-					type='text'
-					required
-				/>
-				<p className='error-msg'>{formErrors?.firstname}</p>
-				<label className='label'>Last Name</label>
-				<input
-					name='lastname'
-					onChange={handleChange}
-					className='input'
-					value={user.name}
-					type='text'
-					required
-				/>
-				<p className='error-msg'>{formErrors?.lastname}</p>
-
 				<label className='label'>Email</label>
 				<input
 					name='email'
@@ -121,19 +85,10 @@ export const Signup = () => {
 					type='password'
 					required
 				/>
-				<p className='error-msg'>{formErrors?.password}</p>
 
-				<label className='label'>Confirm Password</label>
-				<input
-					name='confirmPassword'
-					onChange={handleChange}
-					className='input'
-					type='password'
-					required
-				/>
-				<p className='error-msg'>{formErrors?.confirmPassword}</p>
+				<p className='error-msg'>{formErrors?.password}</p>
 				<p className='bottom-label'>
-					Already have an account? <Link to='/login'>LogIn</Link>
+					Don't have an account? <Link to='/signup'>Sign up</Link>
 				</p>
 
 				<button onClick={handleSubmit} className='btn' type='submit'>
