@@ -8,7 +8,6 @@ export const Sidebar = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { logoutHandler, user } = useAuth();
-	console.log(location);
 
 	return (
 		<aside className='Home-left-container'>
@@ -16,7 +15,6 @@ export const Sidebar = () => {
 				{SidebarData.map((val, key) => {
 					//Regex to match all the sub-routes in a Route.
 					let regex = new RegExp(val.link + "/?.*", "g");
-					console.log(regex, user);
 					return (
 						<div
 							key={key}
