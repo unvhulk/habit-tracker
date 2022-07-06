@@ -4,14 +4,16 @@ import logo from "assets/landing.png";
 import { useNavigate } from "react-router-dom";
 
 export const Landing = () => {
-	let nav = useNavigate();
+	let navigate = useNavigate();
 	return (
 		<div className='Landing-container'>
 			<div className='Landing-left'>
 				<div className='Landing-left-container'>
-					<div className='Landing-heading-container' onClick={() => nav("/")}>
+					<div
+						className='Landing-heading-container'
+						onClick={() => navigate("/")}>
 						<h1>
-							<span>My</span>Website
+							<span>Habit</span>Tracker
 						</h1>
 					</div>
 					<div className='Landing-middle-container'>
@@ -26,7 +28,7 @@ export const Landing = () => {
 						</p>
 					</div>
 					<div className='Landing-btn-container'>
-						<div className='Landing-btn' onClick={() => nav("/home")}>
+						<div className='Landing-btn' onClick={() => navigate("/signup")}>
 							Join now
 						</div>
 						<p>Already have an account?</p>
