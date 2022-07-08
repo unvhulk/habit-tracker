@@ -1,0 +1,83 @@
+.Modal {
+	position: absolute;
+	z-index: 1;
+	background-color: whitesmoke;
+	top: 0;
+	left: 30%;
+	height: 100vh;
+	width: 25rem;
+	transform: "translate(-50%, -50%)";
+	border: "2px solid #000";
+}
+
+.Overlay {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+.Modal-form-container {
+	display: grid;
+	margin: 10px;
+}
+.Modal-form-heading {
+	padding: 5px;
+	display: grid;
+	grid-template-columns: 92% 8%;
+}
+.Modal-form-heading > div:nth-child(1) {
+	font-weight: 700;
+	font-size: larger;
+}
+.Modal-form-heading > div:nth-child(2) {
+	padding: 2px 0 0 0;
+	cursor: pointer;
+}
+.Modal-form-fields {
+	padding: 5px;
+}
+.Modal-form-fields-headings {
+	font-weight: 600;
+	font-size: small;
+}
+.Modal-form-fields input {
+	font-family: "Poppins";
+	outline: none;
+	width: 96.5%;
+	margin-right: 5px;
+}
+.Modal-form-fields .Modal-form-input {
+	width: 96%;
+}
+.Modal-form-dropdown {
+	padding: 2px;
+	border: 1px solid #d0d0d0;
+	width: 98%;
+}
+.Modal-labels {
+	display: grid;
+	grid-template-rows: 30% 30% 30% 10%;
+	font-family: "Poppins";
+	font-size: smaller;
+}
+.Modal-labels > label {
+	display: grid;
+	grid-template-columns: 10% 90%;
+}
+.Modal-form-button {
+	display: grid;
+	justify-content: end;
+	grid-template-columns: 76% 20% 4%;
+}
+.Modal-form-button button {
+	grid-column: 2/3;
+	background-color: background;
+	font-family: "Poppins";
+	color: white;
+	border: none;
+	padding: 1px 10px;
+	cursor: pointer;
+}

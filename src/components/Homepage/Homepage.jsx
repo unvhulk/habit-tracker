@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Homepage.css";
 import ArrowDown from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "contexts/auth-context";
+import { Modal } from "components";
 
 export const Homepage = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { user } = useAuth();
+	const [modal, setModal] = useState(false);
 	return location.pathname !== "/home" ? (
 		<Outlet />
 	) : (
@@ -47,8 +49,10 @@ export const Homepage = () => {
 				<div className='Home-right-habits'>
 					<div className='Home-right-habits-heading'>
 						<div className='Cards-heading-font'>My Habits 🎯</div>
-						<div onClick={() => navigate("habit")}>+ Create Habit</div>
-						{/* <Link to='/habit'> + Create Habit</Link> */}
+						<div onClick={() => setModal(true)}>+ Create Habit</div>
+						<Modal open={modal} onClose={() => setModal(false)}>
+							This is a test modal
+						</Modal>
 					</div>
 					<div className='Home-right-habits-active'>
 						<div>ACTIVE</div>

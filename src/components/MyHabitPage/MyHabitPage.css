@@ -27,7 +27,6 @@
 }
 .MyHabit-right-container {
 	grid-column: 3/4;
-	/* background-color: gray; */
 	display: grid;
 	grid-template-rows: 35% 65%;
 }
