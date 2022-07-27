@@ -1,23 +1,34 @@
-import ArchiveBox from "@mui/icons-material/Inventory2Outlined";
+import { useDispatch } from "react-redux";
+import { getHabit } from "reducers/habitSlice";
+import { useNavigate } from "react-router-dom";
 
-export const Card = () => {
+import "./Card.css";
+
+export const Card = ({ habit }) => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	let cards = document.getElementsByName(habit.color);
+	cards.forEach((card) => {
+		card.classList.add(habit.color);
+	});
+
 	return (
-		<div>
-			<div className='Archive-card-top'>
-				<div className='Archive-card-heading'>
-					<div>Task #1</div>
-					<div>
-						<ArchiveBox />
-					</div>
-				</div>
-				<div className='Archive-card-label'>
-					<div>Label</div>
-					<div>Label</div>
-					<div>Label</div>
-				</div>
-				<div className='Archive-card-date'>26/05/2021-27/06/2021</div>
+		<div
+			name={habit.color}
+			className='CardContainer'
+			onClick={async () => {
+				await dispatch(getHabit(habit._id));
+				navigate("./habit");
+			}}>
+			<div className='Cards-heading'>
+				<div>{habit.name}</div>
 			</div>
-			<div className='Archive-card-bottom'>2 Times Once</div>
+			<div className='Cards-label'>
+				{habit.labelOne && <div>Label1</div>}
+				{habit.labelTwo && <div>Label2</div>}
+				{habit.labelThree && <div>Label3</div>}
+			</div>
+			<div className='Cards-subheading'>{habit.goal + " " + habit.repeat}</div>
 		</div>
 	);
 };

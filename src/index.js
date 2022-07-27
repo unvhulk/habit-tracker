@@ -8,6 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { makeServer } from "server";
 import { AuthProvider } from "contexts/auth-context";
+import { HabitProvider } from "contexts/habit-context";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -17,7 +18,9 @@ root.render(
 		<BrowserRouter>
 			<Provider store={store}>
 				<AuthProvider>
-					<App />
+					<HabitProvider>
+						<App />
+					</HabitProvider>
 				</AuthProvider>
 			</Provider>
 		</BrowserRouter>

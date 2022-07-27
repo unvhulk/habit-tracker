@@ -14,7 +14,6 @@ export const PrivateRoute = () => {
 			</div>
 		</div>
 	) : (
-		<Navigate to='/signup' replace state={{ to: location }} />
-		// <Landing />
+		<Navigate to='/login' replace state={{ to: location }} />
 	);
 };

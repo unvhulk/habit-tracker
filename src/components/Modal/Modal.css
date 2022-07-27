@@ -2,12 +2,11 @@
 	position: absolute;
 	z-index: 1;
 	background-color: whitesmoke;
-	top: 0;
-	left: 30%;
-	height: 100vh;
+	top: 3rem;
+	left: 40%;
 	width: 25rem;
-	transform: "translate(-50%, -50%)";
-	border: "2px solid #000";
+	max-height: 99vh;
+	border: 2px solid #000;
 }
 
 .Overlay {
@@ -24,7 +23,7 @@
 	margin: 10px;
 }
 .Modal-form-heading {
-	padding: 5px;
+	padding: 0 5px;
 	display: grid;
 	grid-template-columns: 92% 8%;
 }
@@ -32,36 +31,39 @@
 	font-weight: 700;
 	font-size: larger;
 }
+/* Close button */
 .Modal-form-heading > div:nth-child(2) {
-	padding: 2px 0 0 0;
 	cursor: pointer;
 }
 .Modal-form-fields {
-	padding: 5px;
+	padding: 3px;
 }
 .Modal-form-fields-headings {
 	font-weight: 600;
-	font-size: small;
+	font-size: x-small;
 }
 .Modal-form-fields input {
 	font-family: "Poppins";
 	outline: none;
 	width: 96.5%;
+	height: 1rem;
 	margin-right: 5px;
 }
 .Modal-form-fields .Modal-form-input {
 	width: 96%;
 }
 .Modal-form-dropdown {
-	padding: 2px;
 	border: 1px solid #d0d0d0;
 	width: 98%;
 }
 .Modal-labels {
 	display: grid;
-	grid-template-rows: 30% 30% 30% 10%;
+	grid-template-rows: 25% 25% 25%;
 	font-family: "Poppins";
-	font-size: smaller;
+	font-size: x-small;
+}
+.Modal-labels > label {
+	height: 10%;
 }
 .Modal-labels > label {
 	display: grid;
@@ -80,4 +82,12 @@
 	border: none;
 	padding: 1px 10px;
 	cursor: pointer;
+}
+.error-msg {
+	color: red;
+	font-size: xx-small;
+	text-align: center;
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
 }

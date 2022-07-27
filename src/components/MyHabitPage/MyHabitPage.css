@@ -26,7 +26,6 @@
 	grid-template-rows: 90% 10%;
 }
 .MyHabit-right-container {
-	grid-column: 3/4;
 	display: grid;
 	grid-template-rows: 35% 65%;
 }
@@ -118,14 +117,10 @@
 }
 .MyHabit-labels {
 	display: grid;
-	grid-template-rows: 40% 20% 40%;
 	font-family: "Montserrat";
 	font-size: 14px;
 }
 
-.MyHabit-labels > label:nth-child(2) {
-	grid-row: 3/4;
-}
 .MyHabit-form-fields-headings {
 	font-family: "Montserrat";
 	font-style: normal;
@@ -133,4 +128,7 @@
 	font-size: 14px;
 	line-height: 12px;
 	padding: 5px 0 8px 0;
+}
+input[type="checkbox"][readonly] {
+	pointer-events: none;
 }

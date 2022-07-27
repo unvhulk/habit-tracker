@@ -1,15 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Homepage.css";
 import ArrowDown from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "contexts/auth-context";
-import { Modal } from "components";
+import { Modal, Card } from "components";
+import { getHabits } from "reducers/habitSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Homepage = () => {
+	const dispatch = useDispatch();
 	const location = useLocation();
-	const navigate = useNavigate();
-	const { user } = useAuth();
+	const { user, token } = useAuth();
+	const { habitsList, status } = useSelector((state) => state.habits);
 	const [modal, setModal] = useState(false);
+	const [statusList, setStatusList] = useState({
+		Active: 0,
+		Inactive: 0,
+		Complete: 0,
+	});
+
+	const habitsListActive = () => {
+		return habitsList?.map((habit) => {
+			if (habit.status === "Active") {
+				return <Card habit={habit} key={habit._id} />;
+			} else return null;
+		});
+	};
+
+	const habitsListComplete = () => {
+		return habitsList?.map((habit) => {
+			if (habit.status === "Complete") {
+				return <Card habit={habit} key={habit._id} />;
+			} else return null;
+		});
+	};
+
+	const statusMGR = (habitsList) => {
+		let statusList = {
+			Active: 0,
+			Inactive: 0,
+			Complete: 0,
+		};
+		habitsList?.forEach((habit) => {
+			if (habit.status === "Active") {
+				statusList.Active += 1;
+			} else if (habit.status === "Inactive") {
+				statusList.Inactive = statusList.Inactive + 1;
+			} else if (habit.status === "Complete") {
+				statusList.Complete = statusList.Complete + 1;
+			} else console.error("Unknown value of Status");
+		});
+		setStatusList(statusList);
+	};
+
+	useEffect(() => {
+		dispatch(getHabits(token));
+	}, []);
+
+	useEffect(() => {
+		statusMGR(habitsList);
+	}, [habitsList]);
+
 	return location.pathname !== "/home" ? (
 		<Outlet />
 	) : (
@@ -17,7 +68,7 @@ export const Homepage = () => {
 			<main className='Home-right-container'>
 				<div className='Home-right-profile'>
 					<div className='Home-right-profile-heading'>
-						<div className='Cards-heading-font'>{`Welcome, ${user.firstname} 👋`}</div>
+						<div className='Cards-heading-font'>{`Welcome, ${user.firstName} 👋`}</div>
 						<div>
 							{"Today "}
 							<ArrowDown />
@@ -26,22 +77,24 @@ export const Homepage = () => {
 					<div className='Home-right-profile-cards'>
 						<div>
 							<div className='Cards-heading'>Completed</div>
-							<div className='Cards-count'>4</div>
+							<div className='Cards-count'>{statusList.Complete}</div>
 							<div className='Cards-subheading'>Total count</div>
 						</div>
 						<div>
 							<div className='Cards-heading'>In progress</div>
-							<div className='Cards-count'>2</div>
+							<div className='Cards-count'>{statusList.Active}</div>
 							<div className='Cards-subheading'>Total Count</div>
 						</div>
 						<div>
 							<div className='Cards-heading'>Overdue</div>
-							<div className='Cards-count'>10</div>
+							<div className='Cards-count'>{statusList.Inactive}</div>
 							<div className='Cards-subheading'>Total Count</div>
 						</div>
 						<div>
 							<div className='Cards-heading'>Total</div>
-							<div className='Cards-count'>16</div>
+							<div className='Cards-count'>
+								{statusList.Complete + statusList.Active + statusList.Inactive}
+							</div>
 							<div className='Cards-subheading'>Total Count</div>
 						</div>
 					</div>
@@ -50,64 +103,31 @@ export const Homepage = () => {
 					<div className='Home-right-habits-heading'>
 						<div className='Cards-heading-font'>My Habits 🎯</div>
 						<div onClick={() => setModal(true)}>+ Create Habit</div>
-						<Modal open={modal} onClose={() => setModal(false)}>
-							This is a test modal
-						</Modal>
+						{modal && <Modal onClose={() => setModal(false)} />}
 					</div>
 					<div className='Home-right-habits-active'>
-						<div>ACTIVE</div>
-						<div>
-							<div>
-								<div className='Cards-heading'>Task #1</div>
-								<div className='Cards-label'>
-									<div>label</div>
-									<div>label</div>
-									<div>label</div>
+						<div className='Home-right-habits-card-heading'>ACTIVE</div>
+						{status === "loading" ? (
+							<div>Loading...</div>
+						) : (
+							<>
+								<div className='Home-right-habits-active-cards'>
+									{habitsListActive()}
 								</div>
-								<div className='Cards-subheading'>0/2 times today</div>
-							</div>
-							<div>
-								<div className='Cards-heading'>Task #2</div>
-								<div className='Cards-label'>
-									<div>label</div>
-									<div>label</div>
-									<div>label</div>
-								</div>
-								<div className='Cards-subheading'>0/2 times today</div>
-							</div>
-							<div>
-								<div className='Cards-heading'>Task #3</div>
-								<div className='Cards-label'>
-									<div>label</div>
-									<div>label</div>
-									<div>label</div>
-								</div>
-								<div className='Cards-subheading'>0/2 times today</div>
-							</div>
-							<div>
-								<div className='Cards-heading'>Task #4</div>
-								<div className='Cards-label'>
-									<div>label</div>
-									<div>label</div>
-									<div>label</div>
-								</div>
-								<div className='Cards-subheading'>0/2 times today</div>
-							</div>
-						</div>
+							</>
+						)}
 					</div>
 					<div className='Home-right-habits-completed'>
-						<div>COMPLETE</div>
-						<div className='Home-right-habits-completed-tasks'>
-							<div>
-								<div className='Cards-heading'>Task #12</div>
-								<div className='Cards-label'>
-									<div>label</div>
-									<div>label</div>
-									<div>label</div>
+						<div className='Home-right-habits-card-heading'>COMPLETE</div>
+						{status === "loading" ? (
+							<div>Loading...</div>
+						) : (
+							<>
+								<div className='Home-right-habits-completed-tasks'>
+									{habitsListComplete()}
 								</div>
-								<div className='Cards-subheading'>2/2 times today</div>
-							</div>
-						</div>
+							</>
+						)}
 					</div>
 				</div>
 			</main>
