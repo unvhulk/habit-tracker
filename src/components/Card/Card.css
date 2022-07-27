@@ -1,0 +1,27 @@
+.CardContainer {
+	margin-right: 5px;
+	display: grid;
+	grid-template-rows: 30% 45% 10%;
+	padding: 1rem;
+	height: 5rem;
+}
+.Card-container:hover {
+	cursor: pointer;
+}
+.Cards-heading {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.Blue {
+	background-color: #dbeafe;
+}
+.Yellow {
+	background: #fef3c7;
+}
+.Red {
+	background: #fee2e2;
+}
+.Green {
+	background: #d1fae5;
+}

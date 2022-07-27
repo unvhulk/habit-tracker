@@ -1,34 +1,13 @@
-import React, { useState } from "react";
-import "./EditPage.css";
-import ArchiveBox from "@mui/icons-material/Inventory2Outlined";
-import Edit from "@mui/icons-material/EditOutlined";
-import Delete from "@mui/icons-material/DeleteOutlineOutlined";
-import { useDispatch, useSelector } from "react-redux";
-import { postHabit } from "reducers/habitSlice";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import "./Modal.css";
+import CloseIcon from "@mui/icons-material/Close";
+import { useDispatch } from "react-redux";
+import { createHabit } from "reducers/habitSlice";
 
-export const EditPage = () => {
-	const [formErrors, setFormErrors] = useState({});
-	const [habit, setHabit] = useState({
-		name: "",
-		startDate: "",
-		endDate: "",
-		goal: "",
-		repeat: "",
-		color: "",
-		status: "",
-		labelOne: "",
-		labelTwo: "",
-		labelThree: "",
-	});
-	const { currentHabit } = useSelector((state) => state.habits);
+export const Modal = ({ onClose }) => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		setHabit(currentHabit);
-	}, []);
+	const [habit, setHabit] = useState({});
+	const [formErrors, setFormErrors] = useState({});
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -40,8 +19,8 @@ export const EditPage = () => {
 		let vali = validate(habit);
 		setFormErrors(vali);
 		if (Object.keys(vali).length === 0) {
-			dispatch(postHabit(habit));
-			return true;
+			dispatch(createHabit(habit));
+			onClose();
 		}
 	};
 
@@ -73,62 +52,52 @@ export const EditPage = () => {
 		}
 		return errors;
 	};
+
 	return (
-		<form
-			className='EditPage-right-container'
-			onSubmit={(e) => {
-				let res = handleSubmit(e);
-				if (res) navigate("/home");
-			}}>
-			<div className='EditPage-right-form'>
-				<div className='MyHabit-right-form-container'>
-					<div className='MyHabit-form-heading'>
-						<div>{"Edit Habit"}</div>
+		<>
+			<div className='Overlay' />
+			<form className='Modal' onSubmit={handleSubmit}>
+				<div className='Modal-form-container'>
+					<div className='Modal-form-heading'>
+						<div>{"New Habit"}</div>
 						<div>
-							<ArchiveBox />
-							<Edit />
-							<Delete />
+							<CloseIcon onClick={onClose} />
 						</div>
+						<div
+							style={{
+								margin: "0",
+								padding: "0",
+								borderTop: "2px solid black ",
+								width: "7rem",
+							}}></div>
 					</div>
-					<div className='MyHabit-form-fields'>
-						{" "}
-						<div className='MyHabit-form-fields-headings'>Title</div>
+					<div className='Modal-form-fields'>
+						<div className='Modal-form-fields-headings'>Title</div>
 						<input
-							placeholder='Habit Title'
+							placeholder='Enter name of your habit'
 							type='text'
 							name='name'
-							value={habit?.name}
+							className='Modal-form-input'
 							onChange={handleChange}></input>
 						<p className='error-msg'>{formErrors?.name}</p>
 					</div>
-					<div className='MyHabit-form-fields'>
-						<div className='MyHabit-form-fields-headings'>Start Date</div>
-						<input
-							placeholder='26/05/2022'
-							type='date'
-							name='startDate'
-							value={habit?.startDate}
-							onChange={handleChange}></input>
+					<div className='Modal-form-fields'>
+						<div className='Modal-form-fields-headings'>Start Date</div>
+						<input type='date' name='startDate' onChange={handleChange}></input>
 						<p className='error-msg'>{formErrors?.startDate}</p>
 					</div>
-					<div className='MyHabit-form-fields'>
-						<div className='MyHabit-form-fields-headings'>End Date</div>
-						<input
-							placeholder='26/05/2022'
-							type='date'
-							name='endDate'
-							value={habit?.endDate}
-							onChange={handleChange}></input>
+					<div className='Modal-form-fields'>
+						<div className='Modal-form-fields-headings'>End Date</div>
+						<input type='date' name='endDate' onChange={handleChange}></input>
 						<p className='error-msg'>{formErrors?.endDate}</p>
 					</div>
-					<div className='MyHabit-form-fields'>
+					<div className='Modal-form-fields'>
 						{" "}
-						<div className='MyHabit-form-fields-headings'>Goal</div>
+						<div className='Modal-form-fields-headings'>Goal</div>
 						<div>
 							<select
 								name='goal'
-								className='MyHabit-form-dropdown'
-								value={habit?.goal}
+								className='Modal-form-dropdown'
 								onChange={handleChange}>
 								<option value=''>--Select Goal--</option>
 								<option value='1 Time'>1 Time</option>
@@ -139,13 +108,12 @@ export const EditPage = () => {
 							<p className='error-msg'>{formErrors?.goal}</p>
 						</div>
 					</div>
-					<div className='MyHabit-form-fields'>
-						<div className='MyHabit-form-fields-headings'>Repeat</div>
+					<div className='Modal-form-fields'>
+						<div className='Modal-form-fields-headings'>Repeat</div>
 						<div>
 							<select
 								name='repeat'
-								className='MyHabit-form-dropdown'
-								value={habit?.repeat}
+								className='Modal-form-dropdown'
 								onChange={handleChange}>
 								<option value=''>--Select Repetition--</option>
 								<option value='Daily'>Daily</option>
@@ -157,13 +125,12 @@ export const EditPage = () => {
 							<p className='error-msg'>{formErrors?.repeat}</p>
 						</div>
 					</div>
-					<div className='MyHabit-form-fields'>
-						<div className='MyHabit-form-fields-headings'>Colour</div>
+					<div className='Modal-form-fields'>
+						<div className='Modal-form-fields-headings'>Colour</div>
 						<div>
 							<select
 								name='color'
-								className='MyHabit-form-dropdown'
-								value={habit?.color}
+								className='Modal-form-dropdown'
 								onChange={handleChange}>
 								<option value=''>--Color--</option>
 								<option value='Blue'>Blue</option>
@@ -174,13 +141,12 @@ export const EditPage = () => {
 							<p className='error-msg'>{formErrors?.color}</p>
 						</div>
 					</div>
-					<div className='MyHabit-form-fields'>
-						<div className='MyHabit-form-fields-headings'>Status</div>
+					<div className='Modal-form-fields'>
+						<div className='Modal-form-fields-headings'>Status</div>
 						<div>
 							<select
 								name='status'
-								className='MyHabit-form-dropdown'
-								value={habit?.status}
+								className='Modal-form-dropdown'
 								onChange={handleChange}>
 								<option value=''>--Select Status--</option>
 								<option value='Active'>Active</option>
@@ -190,54 +156,28 @@ export const EditPage = () => {
 							<p className='error-msg'>{formErrors?.status}</p>
 						</div>
 					</div>
-					<div className='MyHabit-form-fields'>
-						<div className='MyHabit-form-fields-headings'>Labels</div>
-						<div className='EditPage-labels'>
+					<div className='Modal-form-fields'>
+						<div className='Modal-form-fields-headings'>Labels</div>
+						<div className='Modal-labels'>
 							<label>
 								<input
 									type='checkbox'
 									name='labelOne'
-									checked={habit.labelOne}
-									onClick={(e) =>
-										handleChange({
-											target: {
-												name: e.target.name,
-												value: e.target.checked,
-											},
-										})
-									}></input>
+									onChange={handleChange}></input>
 								Label 1
 							</label>
-
 							<label>
 								<input
 									type='checkbox'
 									name='labelTwo'
-									checked={habit.labelTwo}
-									onClick={(e) =>
-										handleChange({
-											target: {
-												name: e.target.name,
-												value: e.target.checked,
-											},
-										})
-									}></input>
+									onChange={handleChange}></input>
 								Label 2
 							</label>
-
 							<label>
 								<input
 									type='checkbox'
 									name='labelThree'
-									checked={habit.labelThree}
-									onClick={(e) =>
-										handleChange({
-											target: {
-												name: e.target.name,
-												value: e.target.checked,
-											},
-										})
-									}></input>
+									onChange={handleChange}></input>
 								Label 3
 							</label>
 							<p className='error-msg'>{formErrors?.label}</p>
@@ -247,7 +187,7 @@ export const EditPage = () => {
 						<button>Done</button>
 					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</>
 	);
 };

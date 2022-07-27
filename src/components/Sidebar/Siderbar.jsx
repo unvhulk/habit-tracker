@@ -31,7 +31,7 @@ export const Sidebar = () => {
 					<img src={profilePic} alt='' />
 				</div>
 				<div>
-					<div>{user.firstname + " " + user.lastname}</div>
+					<div>{user.firstName + " " + user.lastName}</div>
 					<div onClick={() => navigate("/habit")}>View Profile</div>
 				</div>
 
