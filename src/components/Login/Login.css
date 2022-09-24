@@ -1,4 +1,4 @@
-.Signup-form {
+.Login-form {
 	text-align: center;
 	background-color: white;
 	display: grid;
@@ -6,16 +6,16 @@
 	border-radius: 2rem;
 	box-shadow: 0px 4px 40px rgba(9, 7, 27, 0.08);
 	border-radius: 40px;
-	margin: 8px 25rem 8px 25rem;
+	margin: 3rem 25rem 3rem 25rem;
 	font-family: "Poppins";
 }
-.Signup-form > div:nth-child(1) > h1 > span {
+.Login-form > div:nth-child(1) > h1 > span {
 	font: "Poppins";
 	color: #5348c7;
 	font-weight: 700;
 }
 
-.Signup-form > div:nth-child(1) {
+.Login-form > div:nth-child(1) {
 	height: 4rem;
 }
 
@@ -54,7 +54,7 @@
 	font-weight: 600;
 }
 .bottom-label {
-	margin: 5px 0 0 1.3rem;
+	margin: 10px 0 0 0;
 	text-align: center;
 	font-size: small;
 	font: "Poppins";

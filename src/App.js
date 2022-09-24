@@ -12,6 +12,7 @@ import {
 	TrashPage,
 	ErrorPage,
 	PrivateRoute,
+	Login,
 } from "components";
 import Mockman from "mockman-js";
 
@@ -21,6 +22,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Landing />} />
 				<Route path='/signup' element={<Signup />} />
+				<Route path='/login' element={<Login />} />
 				<Route element={<PrivateRoute />}>
 					<Route path='/home' element={<Homepage />}>
 						<Route path='habit' element={<MyHabitPage />} />
