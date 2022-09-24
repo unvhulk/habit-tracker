@@ -2,9 +2,11 @@ import "./Profile.css";
 import quotesUp from "assets/quote-up.png";
 import quotesDown from "assets/quote-down.png";
 import { quotes } from "./Quotes.js";
+import { useTask } from "contexts/task-context";
 
 export const Profile = () => {
 	let index = Math.floor(Math.random() * 10) + 1;
+	const { profileStats } = useTask();
 	return (
 		<main className='profile-page-container'>
 			<div className='profile-heading'>
@@ -20,10 +22,10 @@ export const Profile = () => {
 					</div>
 				</div>
 				<div>
-					<div>Today X times</div>
+					<div>Today </div>
 					<div>
 						<div>
-							<span>0</span> times
+							<span>{profileStats?.times ?? 0}</span> times
 						</div>
 					</div>
 				</div>
@@ -31,7 +33,7 @@ export const Profile = () => {
 					<div>Habit Score</div>
 					<div>
 						<div>
-							<span>0</span> / 100
+							<span>{profileStats?.habitScore ?? 0}</span> / 100
 						</div>
 					</div>
 				</div>
@@ -47,8 +49,8 @@ export const Profile = () => {
 			<div className='profile-quotes'>
 				<div className='quote-otd'>Quote of the day</div>
 				<div className='quote-box'>
-					<div>{quotes[index].quote}</div>
-					<div>{quotes[index].author}</div>
+					<div>{quotes[index]?.quote}</div>
+					<div>{quotes[index]?.author}</div>
 				</div>
 				<img src={quotesUp} alt='#' />
 				<img src={quotesDown} alt='#' />

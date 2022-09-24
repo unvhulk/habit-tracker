@@ -14,6 +14,7 @@ import {
 	PrivateRoute,
 	Login,
 	Profile,
+	Pomodoro,
 } from "components";
 import Mockman from "mockman-js";
 
@@ -26,7 +27,9 @@ function App() {
 				<Route path='/login' element={<Login />} />
 				<Route element={<PrivateRoute />}>
 					<Route path='/home' element={<Homepage />}>
-						<Route path='habit' element={<MyHabitPage />} />
+						<Route path='habit' element={<MyHabitPage />}>
+							<Route path='pomodoro' element={<Pomodoro />} />
+						</Route>
 						<Route path='edit' element={<EditPage />} />
 					</Route>
 					<Route path='/label' element={<Labels />} />

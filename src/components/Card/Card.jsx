@@ -17,6 +17,7 @@ export const Card = ({ habit }) => {
 	return (
 		<>
 			<div
+				key={habit?._id}
 				className={`Card-Container ${habit?.color}`}
 				onClick={async () => {
 					if (location.pathname === "/home") {
@@ -24,7 +25,7 @@ export const Card = ({ habit }) => {
 						navigate("./habit", { state: location });
 					}
 				}}>
-				<div className='Cards-heading'>
+				<div className='Cards-heading' key={habit?._id}>
 					<div>{habit?.name}</div>
 				</div>
 				<div className='Cards-label'>

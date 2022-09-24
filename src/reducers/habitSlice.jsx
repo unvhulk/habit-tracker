@@ -216,10 +216,8 @@ export const getLabels = createAsyncThunk("/api/labels/", async (thunkAPI) => {
 				authorization: token,
 			},
 		});
-		console.log(response.data.labels.length);
 		if (response.data.labels.length === 0) {
 			response.data.labels.push("Label1");
-			console.log(response.data.labels);
 			return { labels: response.data.labels };
 		} else return { labels: response.data.labels };
 	} catch (error) {
@@ -262,7 +260,6 @@ const habitSlice = createSlice({
 					)
 				);
 			}
-			console.log(arr);
 			if (arr.includes(true)) {
 				state.currentHabit.labels[arr.indexOf(true)] =
 					!state.currentHabit.labels[arr.indexOf(true)];
@@ -369,12 +366,10 @@ const habitSlice = createSlice({
 			state.archives = action.payload.archives;
 			state.trashed.push(action.payload.habit);
 			state.status = "success";
-			console.log(action.payload);
 		},
 		[deleteFromArchive.rejected]: (state, action) => {
 			state.status = "rejected";
 			state.error = action.payload;
-			console.log(action.payload);
 		},
 		[postLabels.pending]: (state) => {
 			state.status = "loading";

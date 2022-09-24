@@ -27,7 +27,6 @@ export const Modal = ({ onClose }) => {
 		e.preventDefault();
 		let vali = validate(habit);
 		setFormErrors(vali);
-		console.log(habit);
 		if (Object.keys(vali).length === 0) {
 			dispatch(createHabit(habit));
 			onClose();

@@ -1,0 +1,81 @@
+.Pomodoro-container {
+	display: grid;
+}
+.Pomodoro-main {
+	height: 84vh;
+	overflow: auto;
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	background-color: #e5e5e5;
+	padding-top: 2rem;
+}
+.Timer {
+	display: grid;
+	grid-template-rows: 2fr 1fr;
+}
+.Task {
+	display: grid;
+	border-radius: 2rem;
+	font-family: "Poppins";
+	margin: 1rem;
+}
+.labels {
+	display: grid;
+	align-items: center;
+	padding: 0 0 0 10rem;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 1fr;
+}
+
+.Stopwatch {
+	display: grid;
+	justify-self: center;
+	align-self: center;
+	border: 1.5px solid black;
+	border-radius: 50%;
+	width: 20rem;
+	height: 20rem;
+}
+.time {
+	display: grid;
+	grid-template-columns: 4fr 1fr 4fr;
+	font-size: xx-large;
+	font-family: "Poppins";
+	font-weight: 600;
+}
+.Buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-items: center;
+	align-self: center;
+}
+.Buttons svg {
+	width: 5rem;
+	height: 5rem;
+	color: #554dac;
+	cursor: pointer;
+}
+
+.Title {
+	font-size: 2rem;
+	font-weight: 600;
+	align-self: center;
+	justify-self: center;
+}
+.Description {
+	font-size: 1rem;
+	font-weight: 500;
+	padding: 5px;
+	display: grid;
+	justify-items: center;
+}
+.Time {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+}
+.BreakTime {
+	display: grid;
+	justify-items: center;
+	align-items: center;
+}

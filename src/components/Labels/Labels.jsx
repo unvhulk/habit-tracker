@@ -10,7 +10,6 @@ export const Labels = () => {
 	const [labelBox, setLabelBox] = useState(false);
 	const { labels } = useSelector((state) => state.habits);
 	const dispatch = useDispatch();
-	console.log(labels);
 	useEffect(() => {
 		dispatch(getLabels());
 	}, []);

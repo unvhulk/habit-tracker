@@ -1,23 +1,36 @@
 import React from "react";
 import "./MyHabitPage.css";
+import Pomodoro from "@mui/icons-material/AccessTimeOutlined";
 import ArchiveBox from "@mui/icons-material/Inventory2Outlined";
 import Edit from "@mui/icons-material/EditOutlined";
 import Delete from "@mui/icons-material/DeleteOutlineOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { addToArchive, deleteHabit } from "reducers/habitSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export const MyHabitPage = () => {
 	const { currentHabit } = useSelector((state) => state.habits);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	return (
+	const location = useLocation();
+	return location.pathname !== "/home/habit" ? (
+		<Outlet />
+	) : (
 		<main className='MyHabit-right-container'>
 			<div className='MyHabit-right-form'>
 				<div className='MyHabit-right-form-container'>
 					<div className='MyHabit-form-heading'>
 						<div>{"My Habit"}</div>
+
 						<div>
+							<div
+								className='Link-hover'
+								onClick={() => {
+									navigate("./pomodoro");
+								}}>
+								<Pomodoro />
+							</div>
+
 							<div
 								className='Link-hover'
 								onClick={() => {
