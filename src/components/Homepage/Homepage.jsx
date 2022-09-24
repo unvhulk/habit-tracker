@@ -22,7 +22,7 @@ export const Homepage = () => {
 		return habitsList?.map((habit) => {
 			if (habit.status === "Active") {
 				return <Card habit={habit} key={habit._id} />;
-			} else return null;
+			} else return;
 		});
 	};
 
@@ -30,7 +30,7 @@ export const Homepage = () => {
 		return habitsList?.map((habit) => {
 			if (habit.status === "Complete") {
 				return <Card habit={habit} key={habit._id} />;
-			} else return null;
+			} else return;
 		});
 	};
 
