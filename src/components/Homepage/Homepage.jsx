@@ -18,7 +18,6 @@ export const Homepage = () => {
 		Inactive: 0,
 		Complete: 0,
 	});
-
 	const habitsListActive = () => {
 		return habitsList?.map((habit) => {
 			if (habit.status === "Active") {

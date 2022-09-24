@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
 	const navigate = useNavigate();
-	const userDetails = JSON.parse(localStorage.getItem("user"));
+	const userDetails = localStorage.getItem("user");
 	const [token, setToken] = useState(localStorage.getItem("token"));
 	const [user, setUser] = useState(userDetails);
 	const [error, setError] = useState({});
@@ -25,14 +25,14 @@ const AuthProvider = ({ children }) => {
 			const response = await loginAPI(user);
 			if (response.status === 200) {
 				localStorage.setItem("token", response.data.encodedToken);
-				localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+				localStorage.setItem("user", response.data.foundUser);
 				setToken(response.data.encodedToken);
 				setUser(response.data.foundUser);
 				navigate("/home");
 			}
 		} catch (err) {
 			console.log(err);
-			setError(err.response.data.errors);
+			setError(err.response?.data?.errors);
 		}
 	};
 
@@ -41,15 +41,13 @@ const AuthProvider = ({ children }) => {
 			const response = await signupAPI(user);
 			if (response.status === 201) {
 				localStorage.setItem("token", response.data.encodedToken);
-				localStorage.setItem("user", JSON.stringify(response.data.createdUser));
+				localStorage.setItem("user", response.data.createdUser);
 				setToken(response.data.encodedToken);
 				setUser(response.data.createdUser);
-				console.log("Created user: ");
-				console.log(response.data.createdUser);
 				navigate("/home");
 			}
 		} catch (err) {
-			setError(err.response.data.errors);
+			setError(err.response?.data?.errors);
 			console.log(err);
 		}
 	};

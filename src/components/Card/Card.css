@@ -1,12 +1,13 @@
-.CardContainer {
+.Card-Container {
 	margin-right: 5px;
 	display: grid;
 	grid-template-rows: 30% 45% 10%;
 	padding: 1rem;
 	height: 5rem;
+	border: 1px solid black;
 }
-.Card-container:hover {
-	cursor: pointer;
+.Card-Container:hover {
+	box-shadow: 0 10px 10px 0 grey;
 }
 .Cards-heading {
 	white-space: nowrap;
@@ -24,4 +25,13 @@
 }
 .Green {
 	background: #d1fae5;
+}
+
+.Cards-subheading {
+	display: grid;
+	grid-template-columns: 50% 25% 25%;
+}
+.Archive-btn {
+	cursor: pointer;
+	justify-self: end;
 }

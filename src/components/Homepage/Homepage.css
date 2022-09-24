@@ -67,7 +67,6 @@
 /* ---------------------------Profile cards------------------------------- */
 .Home-right-profile {
 	display: grid;
-	height: 10rem;
 	grid-auto-rows: minmax(5rem, 1fr);
 	grid-template-rows: 20% 80%;
 	padding-top: 1.5rem;
@@ -93,6 +92,7 @@
 	display: grid;
 	grid-template-rows: 30% 45% 10%;
 	background-color: #ffffff;
+	border: 1px solid black;
 	padding: 1rem;
 }
 
@@ -164,9 +164,7 @@
 	padding: 1rem;
 	height: 5rem;
 }
-.Home-right-habits-completed-tasks > div:nth-child(1) {
-	background: #fee2e2;
-}
+
 .Cards-heading {
 	font-weight: 600;
 }

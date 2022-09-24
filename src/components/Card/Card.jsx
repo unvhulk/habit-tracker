@@ -1,34 +1,55 @@
 import { useDispatch } from "react-redux";
-import { getHabit } from "reducers/habitSlice";
-import { useNavigate } from "react-router-dom";
+import {
+	getHabit,
+	restoreFromArchive,
+	deleteFromArchive,
+} from "reducers/habitSlice";
+import { useLocation, useNavigate } from "react-router-dom";
+import Delete from "@mui/icons-material/DeleteOutlineOutlined";
+import Restore from "@mui/icons-material/SettingsBackupRestoreOutlined";
 
 import "./Card.css";
 
 export const Card = ({ habit }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	let cards = document.getElementsByName(habit.color);
-	cards.forEach((card) => {
-		card.classList.add(habit.color);
-	});
-
+	const location = useLocation();
 	return (
-		<div
-			name={habit.color}
-			className='CardContainer'
-			onClick={async () => {
-				await dispatch(getHabit(habit._id));
-				navigate("./habit");
-			}}>
-			<div className='Cards-heading'>
-				<div>{habit.name}</div>
+		<>
+			<div
+				className={`Card-Container ${habit?.color}`}
+				onClick={async () => {
+					if (location.pathname === "/home") {
+						await dispatch(getHabit(habit?._id));
+						navigate("./habit", { state: location });
+					}
+				}}>
+				<div className='Cards-heading'>
+					<div>{habit?.name}</div>
+				</div>
+				<div className='Cards-label'>
+					{Object.keys(habit?.labels).map((label) => (
+						<div>{label}</div>
+					))}
+				</div>
+				<div className='Cards-subheading'>
+					{habit?.goal + " " + habit?.repeat}
+					{location.pathname === "/archive" && (
+						<>
+							<div
+								className='Archive-btn'
+								onClick={() => dispatch(restoreFromArchive(habit))}>
+								<Restore />
+							</div>
+							<div
+								className='Archive-btn'
+								onClick={() => dispatch(deleteFromArchive(habit))}>
+								<Delete />
+							</div>
+						</>
+					)}
+				</div>
 			</div>
-			<div className='Cards-label'>
-				{habit.labelOne && <div>Label1</div>}
-				{habit.labelTwo && <div>Label2</div>}
-				{habit.labelThree && <div>Label3</div>}
-			</div>
-			<div className='Cards-subheading'>{habit.goal + " " + habit.repeat}</div>
-		</div>
+		</>
 	);
 };

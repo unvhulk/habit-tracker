@@ -58,12 +58,11 @@
 }
 .Modal-labels {
 	display: grid;
-	grid-template-rows: 25% 25% 25%;
 	font-family: "Poppins";
 	font-size: x-small;
 }
 .Modal-labels > label {
-	height: 10%;
+	height: 20%;
 }
 .Modal-labels > label {
 	display: grid;
@@ -76,7 +75,7 @@
 }
 .Modal-form-button button {
 	grid-column: 2/3;
-	background-color: background;
+	background-color: #5348c7;
 	font-family: "Poppins";
 	color: white;
 	border: none;

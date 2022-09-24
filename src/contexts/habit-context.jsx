@@ -44,8 +44,8 @@ const HabitProvider = ({ children }) => {
 
 	const getHabitsHandler = async () => {
 		try {
+			console.log("In habit Context get habits handler");
 			const response = await getHabitsAPI();
-
 			if (response.status === 200) {
 				console.log("Habits recieved:");
 				console.log(response.data);

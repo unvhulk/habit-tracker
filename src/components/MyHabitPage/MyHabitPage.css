@@ -132,3 +132,6 @@
 input[type="checkbox"][readonly] {
 	pointer-events: none;
 }
+.Link-hover {
+	cursor: pointer;
+}

@@ -3,12 +3,14 @@ import "./MyHabitPage.css";
 import ArchiveBox from "@mui/icons-material/Inventory2Outlined";
 import Edit from "@mui/icons-material/EditOutlined";
 import Delete from "@mui/icons-material/DeleteOutlineOutlined";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToArchive, deleteHabit } from "reducers/habitSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 export const MyHabitPage = () => {
 	const { currentHabit } = useSelector((state) => state.habits);
-
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	return (
 		<main className='MyHabit-right-container'>
 			<div className='MyHabit-right-form'>
@@ -16,15 +18,25 @@ export const MyHabitPage = () => {
 					<div className='MyHabit-form-heading'>
 						<div>{"My Habit"}</div>
 						<div>
-							<Link to=''>
+							<div
+								className='Link-hover'
+								onClick={() => {
+									dispatch(addToArchive(currentHabit));
+									navigate("/archive");
+								}}>
 								<ArchiveBox />
-							</Link>
-							<Link to='../edit'>
+							</div>
+							<div className='Link-hover' onClick={() => navigate("../edit")}>
 								<Edit />
-							</Link>
-							<Link to=''>
+							</div>
+							<div
+								className='Link-hover'
+								onClick={() => {
+									dispatch(deleteHabit(currentHabit));
+									navigate("/trash");
+								}}>
 								<Delete />
-							</Link>
+							</div>
 						</div>
 					</div>
 					<div className='MyHabit-form-fields'>
@@ -33,7 +45,7 @@ export const MyHabitPage = () => {
 							placeholder='Habit Title'
 							type='text'
 							className='MyHabit-form-dropdown'
-							defaultValue={currentHabit.name}
+							defaultValue={currentHabit?.name}
 							readOnly></input>
 					</div>
 					<div className='MyHabit-form-fields'>
@@ -41,7 +53,7 @@ export const MyHabitPage = () => {
 						<input
 							type='text'
 							className='MyHabit-form-dropdown'
-							defaultValue={currentHabit.startDate}
+							defaultValue={currentHabit?.startDate}
 							readOnly></input>
 					</div>
 					<div className='MyHabit-form-fields'>
@@ -49,7 +61,7 @@ export const MyHabitPage = () => {
 						<input
 							type='text'
 							className='MyHabit-form-dropdown'
-							defaultValue={currentHabit.endDate}
+							defaultValue={currentHabit?.endDate}
 							readOnly></input>
 					</div>
 					<div className='MyHabit-form-fields'>
@@ -60,7 +72,7 @@ export const MyHabitPage = () => {
 								name='Goal'
 								className='MyHabit-form-dropdown'
 								type='text'
-								defaultValue={currentHabit.goal}
+								defaultValue={currentHabit?.goal}
 								readOnly></input>
 						</div>
 					</div>
@@ -71,7 +83,7 @@ export const MyHabitPage = () => {
 								name='Repeat'
 								className='MyHabit-form-dropdown'
 								type='text'
-								defaultValue={currentHabit.repeat}
+								defaultValue={currentHabit?.repeat}
 								readOnly></input>
 						</div>
 					</div>
@@ -82,7 +94,7 @@ export const MyHabitPage = () => {
 								name='Colour'
 								className='MyHabit-form-dropdown'
 								type='text'
-								defaultValue={currentHabit.color}
+								defaultValue={currentHabit?.color}
 								readOnly></input>
 						</div>
 					</div>
@@ -92,32 +104,19 @@ export const MyHabitPage = () => {
 							<input
 								name='Status'
 								className='MyHabit-form-dropdown'
-								defaultValue={currentHabit.status}
+								defaultValue={currentHabit?.status}
 								readOnly></input>
 						</div>
 					</div>
 					<div className='MyHabit-form-fields'>
-						{" "}
 						<div className='MyHabit-form-fields-headings'>Labels</div>
 						<div className='MyHabit-labels'>
-							{currentHabit.labelOne && (
-								<label>
-									<input type='checkbox' defaultChecked disabled></input> Label
-									1
+							{Object.keys(currentHabit?.labels).map((label) => (
+								<label key={label}>
+									<input type='checkbox' defaultChecked disabled></input>
+									{label}
 								</label>
-							)}
-							{currentHabit.labelTwo && (
-								<label>
-									<input type='checkbox' defaultChecked disabled></input> Label
-									2
-								</label>
-							)}
-							{currentHabit.labelThree && (
-								<label>
-									<input type='checkbox' defaultChecked disabled></input> Label
-									3
-								</label>
-							)}
+							))}
 						</div>
 					</div>
 				</div>

@@ -13,9 +13,6 @@ import { requiresAuth } from "../utils/authUtils";
  * */
 
 export const getHabitsHandler = function (schema, request) {
-	console.log("Request in get habits handler:");
-	console.log(request);
-
 	const user = requiresAuth.call(this, request);
 	if (!user) {
 		return new Response(
@@ -70,18 +67,10 @@ export const createHabitHandler = function (schema, request) {
 	const { habit } = JSON.parse(request.requestBody);
 	const createdHabit = {
 		_id: uuid(),
-		labelOne: "",
-		labelTwo: "",
-		labelThree: "",
 		...habit,
 	};
-	console.log("Before pushing :");
-	console.log(user.habits);
 	user.habits.push(createdHabit);
-	console.log("After pushing :");
-	console.log(user.habits);
 	this.db.users.update({ _id: user._id }, user);
-	console.log(this.db.users);
 	return new Response(200, {}, { habits: user.habits });
 };
 

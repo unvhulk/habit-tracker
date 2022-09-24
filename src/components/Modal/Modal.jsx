@@ -1,23 +1,33 @@
+import { useDispatch, useSelector } from "react-redux";
+import { createHabit } from "reducers/habitSlice";
+import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import "./Modal.css";
-import CloseIcon from "@mui/icons-material/Close";
-import { useDispatch } from "react-redux";
-import { createHabit } from "reducers/habitSlice";
 
 export const Modal = ({ onClose }) => {
 	const dispatch = useDispatch();
-	const [habit, setHabit] = useState({});
+	const [habit, setHabit] = useState({ labels: [] });
 	const [formErrors, setFormErrors] = useState({});
+	const { labels } = useSelector((state) => state.habits);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setHabit({ ...habit, [name]: value });
 	};
 
+	const handleLabel = (e) => {
+		const { name, value } = e.target;
+		if (value === "on") {
+			// setHabit({ ...habit, labels: habit.labels.concat({ [name]: value }) });
+			setHabit({ ...habit, labels: { ...habit.labels, [name]: value } });
+		}
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let vali = validate(habit);
 		setFormErrors(vali);
+		console.log(habit);
 		if (Object.keys(vali).length === 0) {
 			dispatch(createHabit(habit));
 			onClose();
@@ -47,9 +57,10 @@ export const Modal = ({ onClose }) => {
 		if (!values.repeat) {
 			errors.repeat = "Habit's Repition is required";
 		}
-		if (!(values.labelOne || values.labelTwo || values.labelThree)) {
+		if (!values.labels.length) {
 			errors.label = "Habit Label is required";
 		}
+
 		return errors;
 	};
 
@@ -159,27 +170,16 @@ export const Modal = ({ onClose }) => {
 					<div className='Modal-form-fields'>
 						<div className='Modal-form-fields-headings'>Labels</div>
 						<div className='Modal-labels'>
-							<label>
-								<input
-									type='checkbox'
-									name='labelOne'
-									onChange={handleChange}></input>
-								Label 1
-							</label>
-							<label>
-								<input
-									type='checkbox'
-									name='labelTwo'
-									onChange={handleChange}></input>
-								Label 2
-							</label>
-							<label>
-								<input
-									type='checkbox'
-									name='labelThree'
-									onChange={handleChange}></input>
-								Label 3
-							</label>
+							{labels?.map((label) => (
+								<label key={labels.indexOf(label)}>
+									<input
+										type='checkbox'
+										name={label}
+										onChange={handleLabel}></input>
+									{label}
+								</label>
+							))}
+
 							<p className='error-msg'>{formErrors?.label}</p>
 						</div>
 					</div>

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./EditPage.css";
 import ArchiveBox from "@mui/icons-material/Inventory2Outlined";
-import Edit from "@mui/icons-material/EditOutlined";
 import Delete from "@mui/icons-material/DeleteOutlineOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { postHabit } from "reducers/habitSlice";
+import { postHabit, addToArchive, deleteHabit } from "reducers/habitSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,21 +17,33 @@ export const EditPage = () => {
 		repeat: "",
 		color: "",
 		status: "",
-		labelOne: "",
-		labelTwo: "",
-		labelThree: "",
+		labels: {},
 	});
-	const { currentHabit } = useSelector((state) => state.habits);
+	const { currentHabit, labels } = useSelector((state) => state.habits);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		setHabit(currentHabit);
 	}, []);
-
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setHabit({ ...habit, [name]: value });
+	};
+
+	const handleLabel = async (e) => {
+		const { name, checked } = e.target;
+		let labels = { ...habit.labels };
+		if (!checked) {
+			delete labels[name];
+		} else {
+			labels[name] = true;
+		}
+		setHabit({ ...habit, labels: labels });
+	};
+
+	const checkedLabel = (label) => {
+		return habit?.labels[label];
 	};
 
 	const handleSubmit = (e) => {
@@ -68,7 +79,7 @@ export const EditPage = () => {
 		if (!values.repeat) {
 			errors.repeat = "Habit's Repition is required";
 		}
-		if (!(values.labelOne || values.labelTwo || values.labelThree)) {
+		if (!Object.keys(values.labels)) {
 			errors.label = "Habit Label is required";
 		}
 		return errors;
@@ -85,9 +96,24 @@ export const EditPage = () => {
 					<div className='MyHabit-form-heading'>
 						<div>{"Edit Habit"}</div>
 						<div>
-							<ArchiveBox />
-							<Edit />
-							<Delete />
+							<div></div>
+							<div
+								className='Link-hover'
+								onClick={() => {
+									dispatch(addToArchive(currentHabit));
+									navigate("/archive");
+								}}>
+								<ArchiveBox />
+							</div>
+
+							<div
+								className='Link-hover'
+								onClick={() => {
+									dispatch(deleteHabit(currentHabit));
+									navigate("/trash");
+								}}>
+								<Delete />
+							</div>
 						</div>
 					</div>
 					<div className='MyHabit-form-fields'>
@@ -193,53 +219,17 @@ export const EditPage = () => {
 					<div className='MyHabit-form-fields'>
 						<div className='MyHabit-form-fields-headings'>Labels</div>
 						<div className='EditPage-labels'>
-							<label>
-								<input
-									type='checkbox'
-									name='labelOne'
-									checked={habit.labelOne}
-									onClick={(e) =>
-										handleChange({
-											target: {
-												name: e.target.name,
-												value: e.target.checked,
-											},
-										})
-									}></input>
-								Label 1
-							</label>
-
-							<label>
-								<input
-									type='checkbox'
-									name='labelTwo'
-									checked={habit.labelTwo}
-									onClick={(e) =>
-										handleChange({
-											target: {
-												name: e.target.name,
-												value: e.target.checked,
-											},
-										})
-									}></input>
-								Label 2
-							</label>
-
-							<label>
-								<input
-									type='checkbox'
-									name='labelThree'
-									checked={habit.labelThree}
-									onClick={(e) =>
-										handleChange({
-											target: {
-												name: e.target.name,
-												value: e.target.checked,
-											},
-										})
-									}></input>
-								Label 3
-							</label>
+							{labels?.map((label) => (
+								<label key={label}>
+									<input
+										type='checkbox'
+										name={label}
+										checked={checkedLabel(label)}
+										onChange={handleLabel}
+									/>
+									{label}
+								</label>
+							))}
 							<p className='error-msg'>{formErrors?.label}</p>
 						</div>
 					</div>

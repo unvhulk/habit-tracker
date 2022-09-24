@@ -9,9 +9,7 @@ export const Landing = () => {
 		<div className='Landing-container'>
 			<div className='Landing-left'>
 				<div className='Landing-left-container'>
-					<div
-						className='Landing-heading-container'
-						onClick={() => navigate("/")}>
+					<div className='Landing-heading-container'>
 						<h1>
 							<span>Habit</span>Tracker
 						</h1>

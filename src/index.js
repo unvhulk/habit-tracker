@@ -10,8 +10,7 @@ import { makeServer } from "server";
 import { AuthProvider } from "contexts/auth-context";
 import { HabitProvider } from "contexts/habit-context";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
+const root = createRoot(document.getElementById("root"));
 makeServer();
 root.render(
 	<React.StrictMode>

@@ -32,7 +32,7 @@ export const Sidebar = () => {
 				</div>
 				<div>
 					<div>{user.firstName + " " + user.lastName}</div>
-					<div onClick={() => navigate("/habit")}>View Profile</div>
+					<div onClick={() => navigate("/profile")}>View Profile</div>
 				</div>
 
 				<div onClick={() => logoutHandler()} style={{ cursor: "pointer" }}>

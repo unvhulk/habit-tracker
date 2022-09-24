@@ -6,3 +6,7 @@ export const store = configureStore({
 		habits: habitsReducer,
 	},
 });
+
+const useAppDispatch = () => store.dispatch;
+
+export { useAppDispatch };

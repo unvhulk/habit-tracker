@@ -1,69 +1,22 @@
 .Archive-right-container {
 	display: grid;
-	grid-template-rows: 15% 85%;
-	/* background-color: aqua; */
 }
-.Archive-search-contianer {
-	/* background-color: grey; */
-	padding: 2rem 10rem 2rem 10rem;
-}
-.Archive-cards-container {
-	/* background-color: blueviolet; */
-	/* border: 2px solid red; */
+.Archive-cards-container > div:nth-child(1) {
 	display: grid;
-	grid-template-rows: 8% 30% 62%;
-}
-.Archive-search-bar {
-	grid-row: 2/3;
-	border: 1px solid gray;
-	background-color: white;
-	display: grid;
-	grid-template-columns: 5% 90% 5%;
-	align-items: center;
-	justify-items: center;
-	padding: 10px;
-	border-radius: 5px;
-}
-.Archive-search-bar > input {
-	border: none;
-	width: 98%;
-	border: none;
-	outline: none;
-}
-.Archive-search-bar > input:active {
-	border: none;
-	outline: none;
+	font-family: "Poppins";
+	font-weight: 600;
+	font-size: x-large;
+	margin-left: 1.3rem;
+	padding-top: 1.5rem;
+	justify-content: center;
 }
 .Archive-cards-container > div:nth-child(2) {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
 	padding: 5px 5px 5px 0;
 }
-.Archive-cards-container > div:nth-child(2) > div {
-	/* border: 2px solid red; */
-	margin-left: 5px;
-	display: grid;
-	grid-template-rows: 80% 20%;
-	padding: 12px;
-}
-.Archive-cards-container > div:nth-child(2) > div:nth-child(1) {
-	background-color: #dbeafe;
-}
-.Archive-cards-container > div:nth-child(2) > div:nth-child(2) {
-	background: #fee2e2;
-}
-.Archive-cards-container > div:nth-child(2) > div:nth-child(3) {
-	background: #fef3c7;
-}
-.Archive-cards-container > div:nth-child(2) > div:nth-child(4) {
-	background: #d1fae5;
-}
-.Archive-cards-container > div:nth-child(1) {
-	font-size: large;
-	font-weight: 600;
-}
+
 .Archive-card-heading {
-	/* border: 1px solid red; */
 	padding: 5px;
 	font-weight: 600;
 	font-size: 0.89rem;
@@ -76,12 +29,10 @@
 	justify-content: center;
 }
 .Archive-card-label {
-	/* border: 1px solid red; */
 	display: flex;
 	grid-template-columns: 1fr 1fr 1fr;
 }
 .Archive-card-bottom {
-	/* border: 2px solid red; */
 	font-size: x-small;
 }
 .Archive-card-label > div {
@@ -98,4 +49,11 @@
 }
 .Archive-card-date {
 	font-size: xx-small;
+}
+.Archive-empty {
+	grid-column: 1/6;
+	display: grid;
+	justify-content: center;
+	margin-top: 1.3rem;
+	font-size: x-large;
 }

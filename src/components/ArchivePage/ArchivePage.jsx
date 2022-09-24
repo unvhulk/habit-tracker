@@ -1,28 +1,26 @@
 import React from "react";
 import "./ArchivePage.css";
-import Search from "@mui/icons-material/SearchOutlined";
-import Filter from "@mui/icons-material/TuneOutlined";
 import { Card } from "components/Card/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getArchives } from "reducers/habitSlice";
 
 export const ArchivePage = () => {
+	const { archives } = useSelector((state) => state.habits);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getArchives());
+	}, []);
 	return (
 		<main className='Archive-right-container'>
-			<div className='Archive-search-contianer'>
-				<div className='Archive-search-bar'>
-					<Search />
-					<input
-						type='text'
-						placeholder='Search Posts, People, anything'></input>
-					<Filter />
-				</div>
-			</div>
 			<div className='Archive-cards-container'>
-				<div>{" Archive"}</div>
+				<div>Archive</div>
 				<div>
-					<Card />
-					<Card />
-					<Card />
-					<Card />
+					{archives?.length !== 0 ? (
+						archives?.map((habit) => <Card habit={habit} key={habit._id} />)
+					) : (
+						<div className='Archive-empty'>The Archive page is empty</div>
+					)}
 				</div>
 			</div>
 		</main>
