@@ -77,7 +77,7 @@ export const Pomodoro = () => {
 			}
 
 			tick();
-		}, 10);
+		}, 1000);
 		return () => clearInterval(interval);
 	}, [task]);
 
