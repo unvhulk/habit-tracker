@@ -1,7 +1,7 @@
 .Labels-right-container {
 	display: grid;
 	grid-template-columns: 20% 60% 20%;
-	grid-template-rows: 20% 80%;
+	grid-template-rows: 5% 95%;
 }
 .Labels-search-container {
 	grid-row: 1/2;
@@ -38,26 +38,47 @@
 	display: grid;
 	grid-template-columns: 72% 28%;
 	padding: 10px;
-	font-family: "Montserrat";
+	font-family: "Poppins";
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 1.3rem;
 }
 
 .Labels-list-heading > div:nth-child(2) {
 	color: rgba(83, 72, 199, 1);
+	cursor: pointer;
 }
+
 .Labels-list-items {
 	padding: 10px;
 	display: grid;
 	grid-template-rows: 1fr 1fr;
-	font-family: "Montserrat";
+	font-family: "Poppins";
 	font-style: normal;
 	font-weight: 600;
-	font-size: 14px;
+	font-size: 1rem;
 }
 .Labels-list-items > div {
 	display: grid;
-	grid-template-columns: 95% 5%;
+	grid-template-columns: 90% 5% 5%;
 	align-items: center;
 	padding-bottom: 10px;
+}
+.Labels-list-items > div :nth-child(2) {
+	cursor: pointer;
+}
+.Labels-list-items > div :nth-child(3) {
+	cursor: pointer;
+}
+.Label-input {
+	font-family: "Poppins";
+	font-weight: 600;
+	width: 87%;
+}
+.Label-button {
+	font-family: "Poppins";
+	font-weight: 600;
+	color: white;
+	background-color: rgba(83, 72, 199, 1);
+	border: none;
+	padding: 3px 5px;
 }

@@ -1,8 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import habitsReducer from "../../src/reducers/habitSlice";
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+	reducer: {
+		habits: habitsReducer,
+	},
 });
+
+const useAppDispatch = () => store.dispatch;
+
+export { useAppDispatch };

@@ -1,0 +1,101 @@
+.profile-page-container {
+	height: 87.8vh;
+	overflow: auto;
+	display: grid;
+	grid-template-rows: repeat(9, 1fr);
+	padding: 1.5rem 0 0 0;
+}
+.profile-heading {
+	grid-row: 1/2;
+}
+.profile-heading h2 {
+	margin: 0;
+	padding: 10px;
+	font-family: "Poppins";
+	font-weight: 600;
+	font-size: x-large;
+}
+.profile-stats {
+	grid-row: 2/4;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+.profile-stats > div {
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	margin: 5px;
+	padding: 5px 8px;
+	background-color: white;
+	border: 1px solid black;
+	font-family: "Poppins";
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+.profile-stats > div :nth-child(1) {
+	grid-row: 1/2;
+}
+.profile-stats > div :nth-child(2) {
+	grid-row: 2/4;
+}
+.profile-stats > div :nth-child(2) span {
+	font-size: 2.5rem;
+}
+.profile-quotes {
+	grid-row: 4/9;
+	display: grid;
+	grid-template-rows: repeat(5, 1fr);
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.quote-otd {
+	grid-row: 2/3;
+	grid-column: 3/6;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1.5rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.quote-box {
+	grid-row: 3/6;
+	grid-column: 3/6;
+	display: grid;
+	margin-top: 1.8rem;
+	background-color: white;
+	border: 1px solid black;
+}
+.quote-box :nth-child(1) {
+	grid-row: 2/3;
+	padding: 0 0 0 1rem;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 1.2rem;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+}
+.quote-box :nth-child(2) {
+	grid-row: 3/4;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1.2rem;
+	display: flex;
+	justify-content: space-around;
+}
+.profile-quotes :nth-child(3) {
+	grid-row: 3/4;
+	grid-column: 3/4;
+	align-self: end;
+	justify-self: start;
+}
+
+.profile-quotes :nth-child(4) {
+	grid-row: 3/4;
+	grid-column: 5/6;
+	align-self: end;
+	justify-self: end;
+}

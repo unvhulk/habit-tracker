@@ -1,0 +1,18 @@
+.EditPage-right-container {
+	display: grid;
+	height: 35rem;
+	overflow: auto;
+}
+.EditPage-right-form {
+	margin: 0;
+	padding: 5px 0 0 0;
+}
+.error-msg {
+	margin: 0;
+	padding: 0;
+}
+.EditPage-labels {
+	display: grid;
+	font-family: "Montserrat";
+	font-size: 14px;
+}

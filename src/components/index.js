@@ -12,3 +12,5 @@ export * from "./TrashPage/TrashPage";
 export * from "./ErrorPage/ErrorPage";
 export * from "./PrivateRoute/PrivateRoute";
 export * from "./Login/Login";
+export * from "./Modal/Modal";
+export * from "./Profile/Profile";

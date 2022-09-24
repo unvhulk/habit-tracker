@@ -13,6 +13,7 @@ import {
 	ErrorPage,
 	PrivateRoute,
 	Login,
+	Profile,
 } from "components";
 import Mockman from "mockman-js";
 
@@ -31,6 +32,7 @@ function App() {
 					<Route path='/label' element={<Labels />} />
 					<Route path='/archive' element={<ArchivePage />} />
 					<Route path='/trash' element={<TrashPage />} />
+					<Route path='/profile' element={<Profile />} />
 				</Route>
 				<Route path='*' element={<ErrorPage />} />
 				<Route path='/mock' element={<Mockman />} />
