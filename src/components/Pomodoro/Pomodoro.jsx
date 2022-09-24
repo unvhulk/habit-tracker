@@ -7,7 +7,6 @@ import "react-circular-progressbar/dist/styles.css";
 import { useState, useRef, useEffect } from "react";
 import { useTask } from "contexts/task-context";
 import { useSelector } from "react-redux";
-import { current } from "@reduxjs/toolkit";
 
 export const Pomodoro = () => {
 	const [isPaused, setIsPaused] = useState(true);
