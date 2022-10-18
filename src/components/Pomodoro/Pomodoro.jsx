@@ -135,7 +135,7 @@ export const Pomodoro = () => {
 					<div className='Description'>{currentHabit.goal}</div>
 					<div className='labels'>
 						<div>Labels:</div>
-						{Object.keys(currentHabit.labels).map((label) => {
+						{currentHabit.labels.map((label) => {
 							return <div>{label}</div>;
 						})}
 					</div>

@@ -1,4 +1,6 @@
 import { Server, Model, RestSerializer } from "miragejs";
+import { v4 as uuid } from "uuid";
+
 import {
 	archiveHabitHandler,
 	deleteFromArchivesHandler,
@@ -40,9 +42,66 @@ export function makeServer({ environment = "development" } = {}) {
 			users.forEach((item) =>
 				server.create("user", {
 					...item,
-					habits: [],
-					archives: [],
-					labels: [],
+					habits: [
+						{
+							_id: uuid(),
+							name: "Gym",
+							goal: "1 Time",
+							repeat: "Daily",
+							status: "Active",
+							startDate: "2022-07-21",
+							endDate: "2022-08-21",
+							color: "Red",
+							labels: ["General"],
+						},
+						{
+							_id: uuid(),
+							name: "Projects",
+							goal: "3 Times",
+							repeat: "Daily",
+							status: "Active",
+							startDate: "2022-07-21",
+							endDate: "2022-08-21",
+							color: "Red",
+							labels: ["General"],
+						},
+						{
+							_id: uuid(),
+							name: "Meditate",
+							goal: "2 Times",
+							repeat: "Daily",
+							status: "Active",
+							startDate: "2022-07-21",
+							endDate: "2022-08-21",
+							color: "Green",
+							labels: ["General"],
+						},
+						{
+							_id: uuid(),
+							name: "Meditate",
+							goal: "1 Time",
+							repeat: "Daily",
+							status: "Complete",
+							startDate: "2022-07-21",
+							endDate: "2022-08-21",
+							color: "Green",
+							labels: ["General"],
+						},
+					],
+					archives: [
+						{
+							_id: uuid(),
+							name: "Gym",
+							goal: "1 Time",
+							repeat: "Daily",
+							status: "Active",
+							startDate: "2022-07-21",
+							endDate: "2022-08-21",
+							color: "Red",
+							labels: ["General"],
+						},
+					],
+					labels: ["General"],
 				})
 			);
 		},

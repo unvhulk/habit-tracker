@@ -29,8 +29,8 @@ export const Card = ({ habit }) => {
 					<div>{habit?.name}</div>
 				</div>
 				<div className='Cards-label'>
-					{Object.keys(habit?.labels).map((label) => (
-						<div>{label}</div>
+					{habit?.labels.map((label) => (
+						<div key={label}> {label}</div>
 					))}
 				</div>
 				<div className='Cards-subheading'>

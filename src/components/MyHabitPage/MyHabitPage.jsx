@@ -124,7 +124,7 @@ export const MyHabitPage = () => {
 					<div className='MyHabit-form-fields'>
 						<div className='MyHabit-form-fields-headings'>Labels</div>
 						<div className='MyHabit-labels'>
-							{Object.keys(currentHabit?.labels).map((label) => (
+							{currentHabit?.labels.map((label) => (
 								<label key={label}>
 									<input type='checkbox' defaultChecked disabled></input>
 									{label}

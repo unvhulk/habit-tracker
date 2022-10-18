@@ -18,11 +18,12 @@ export const Homepage = () => {
 		Inactive: 0,
 		Complete: 0,
 	});
+
 	const habitsListActive = () => {
 		return habitsList?.map((habit) => {
 			if (habit.status === "Active") {
 				return <Card habit={habit} key={habit._id} />;
-			} else return;
+			} else return null;
 		});
 	};
 
@@ -30,7 +31,7 @@ export const Homepage = () => {
 		return habitsList?.map((habit) => {
 			if (habit.status === "Complete") {
 				return <Card habit={habit} key={habit._id} />;
-			} else return;
+			} else return null;
 		});
 	};
 
@@ -68,10 +69,6 @@ export const Homepage = () => {
 				<div className='Home-right-profile'>
 					<div className='Home-right-profile-heading'>
 						<div className='Cards-heading-font'>{`Welcome, ${user.firstName} 👋`}</div>
-						<div>
-							{"Today "}
-							<ArrowDown />
-						</div>
 					</div>
 					<div className='Home-right-profile-cards'>
 						<div>

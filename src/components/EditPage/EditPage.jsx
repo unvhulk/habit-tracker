@@ -17,11 +17,13 @@ export const EditPage = () => {
 		repeat: "",
 		color: "",
 		status: "",
-		labels: {},
+		labels: [],
 	});
 	const { currentHabit, labels } = useSelector((state) => state.habits);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	console.log(labels);
 
 	useEffect(() => {
 		setHabit(currentHabit);
@@ -33,17 +35,20 @@ export const EditPage = () => {
 
 	const handleLabel = async (e) => {
 		const { name, checked } = e.target;
-		let labels = { ...habit.labels };
+		let labels = [...habit.labels];
 		if (!checked) {
-			delete labels[name];
+			labels = labels.filter((label) => label !== name);
 		} else {
-			labels[name] = true;
+			let found = labels.includes(name);
+			if (!found) {
+				labels.push(name);
+			}
 		}
-		setHabit({ ...habit, labels: labels });
+		setHabit({ ...habit, labels });
 	};
 
 	const checkedLabel = (label) => {
-		return habit?.labels[label];
+		return habit?.labels.includes(label);
 	};
 
 	const handleSubmit = (e) => {
@@ -93,10 +98,9 @@ export const EditPage = () => {
 			}}>
 			<div className='EditPage-right-form'>
 				<div className='MyHabit-right-form-container'>
-					<div className='MyHabit-form-heading'>
+					<div className='Edit-form-heading'>
 						<div>{"Edit Habit"}</div>
 						<div>
-							<div></div>
 							<div
 								className='Link-hover'
 								onClick={() => {

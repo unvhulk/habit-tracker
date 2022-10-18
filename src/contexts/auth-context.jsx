@@ -20,7 +20,6 @@ const AuthProvider = ({ children }) => {
 	};
 
 	const loginHandler = async (user) => {
-		// console.log("entered login");
 		try {
 			const response = await loginAPI(user);
 			if (response.status === 200) {
@@ -28,6 +27,7 @@ const AuthProvider = ({ children }) => {
 				localStorage.setItem("user", response.data.foundUser);
 				setToken(response.data.encodedToken);
 				setUser(response.data.foundUser);
+				console.log(response.data.foundUser);
 				navigate("/home");
 			}
 		} catch (err) {
@@ -44,6 +44,7 @@ const AuthProvider = ({ children }) => {
 				localStorage.setItem("user", response.data.createdUser);
 				setToken(response.data.encodedToken);
 				setUser(response.data.createdUser);
+				console.log(response.data.createdUser);
 				navigate("/home");
 			}
 		} catch (err) {

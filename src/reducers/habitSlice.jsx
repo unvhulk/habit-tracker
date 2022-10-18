@@ -10,6 +10,7 @@ export const getHabits = createAsyncThunk(
 					authorization: token,
 				},
 			});
+			console.log(response);
 			return response.data.habits;
 		} catch (error) {
 			const { rejectWithValue } = thunkAPI;
@@ -203,7 +204,7 @@ export const postLabels = createAsyncThunk(
 			return { labels: response.data.labels };
 		} catch (error) {
 			const { rejectWithValue } = thunkAPI;
-			return rejectWithValue(error.response);
+			return rejectWithValue(error.response.payload.data.errors);
 		}
 	}
 );
@@ -216,10 +217,7 @@ export const getLabels = createAsyncThunk("/api/labels/", async (thunkAPI) => {
 				authorization: token,
 			},
 		});
-		if (response.data.labels.length === 0) {
-			response.data.labels.push("Label1");
-			return { labels: response.data.labels };
-		} else return { labels: response.data.labels };
+		return { labels: response.data.labels };
 	} catch (error) {
 		const { rejectWithValue } = thunkAPI;
 		return rejectWithValue(error.response);
@@ -248,26 +246,9 @@ const habitSlice = createSlice({
 	name: "habits",
 	initialState: {
 		trashed: [],
-		labels: ["Label1"],
+		labels: ["General"],
 	},
-	reducers: {
-		toggleLabel: (state, action) => {
-			let arr = [];
-			for (let i = 0; i < action.payload.length; i++) {
-				arr.push(
-					Object.keys(state.currentHabit.labels[i]).includes(
-						action.payload.name
-					)
-				);
-			}
-			if (arr.includes(true)) {
-				state.currentHabit.labels[arr.indexOf(true)] =
-					!state.currentHabit.labels[arr.indexOf(true)];
-			} else {
-				state.currentHabit.labels.push({ [action.payload.name]: true });
-			}
-		},
-	},
+
 	extraReducers: {
 		[getHabits.pending]: (state) => {
 			state.status = "loading";
@@ -408,5 +389,3 @@ const habitSlice = createSlice({
 });
 
 export default habitSlice.reducer;
-
-export const { toggleLabel } = habitSlice.actions;

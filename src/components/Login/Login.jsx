@@ -12,7 +12,7 @@ export const Login = () => {
 	const location = useLocation();
 
 	// States for checking the errors
-	const [submitted, setSubmitted] = useState(false);
+	// const [submitted, setSubmitted] = useState(false);
 	const [formErrors, setFormErrors] = useState({});
 	const { error, setError } = useAuth();
 
@@ -25,7 +25,7 @@ export const Login = () => {
 	//Guest user handler
 	const guestUserHandler = (e) => {
 		e.preventDefault();
-		setUser({
+		loginHandler({
 			email: "adarshbalak@gmail.com",
 			password: "adarshBalak123",
 		});
@@ -95,9 +95,9 @@ export const Login = () => {
 					<p className='bottom-label'>
 						Don't have an account? <Link to='/signup'>Sign up</Link>
 					</p>
-					<p className='bottom-label guest-user' onClick={guestUserHandler}>
+					<button className='btn guest-user' onClick={guestUserHandler}>
 						Guest user account
-					</p>
+					</button>
 
 					<button onClick={handleSubmit} className='btn' type='submit'>
 						Submit
