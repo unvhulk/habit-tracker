@@ -10,9 +10,12 @@ export const Labels = () => {
 	const [labelBox, setLabelBox] = useState(false);
 	const { labels } = useSelector((state) => state.habits);
 	const dispatch = useDispatch();
+
 	useEffect(() => {
+		dispatch(postLabels("General"));
 		dispatch(getLabels());
 	}, []);
+
 	const handleLabel = (e) => {
 		e.preventDefault();
 		dispatch(postLabels(label));

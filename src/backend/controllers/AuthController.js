@@ -37,7 +37,6 @@ export const signupHandler = function (schema, request) {
 			password,
 			createdAt: formatDate(),
 			updatedAt: formatDate(),
-			...rest,
 			habits: [
 				{
 					_id: uuid(),
@@ -48,7 +47,7 @@ export const signupHandler = function (schema, request) {
 					startDate: "2022-07-21",
 					endDate: "2022-08-21",
 					color: "Red",
-					labels: { Label1: "on" },
+					labels: ["General"],
 				},
 				{
 					_id: uuid(),
@@ -59,7 +58,7 @@ export const signupHandler = function (schema, request) {
 					startDate: "2022-07-21",
 					endDate: "2022-08-21",
 					color: "Red",
-					labels: { Label1: "on" },
+					labels: ["General"],
 				},
 				{
 					_id: uuid(),
@@ -70,7 +69,7 @@ export const signupHandler = function (schema, request) {
 					startDate: "2022-07-21",
 					endDate: "2022-08-21",
 					color: "Green",
-					labels: { Label1: "on" },
+					labels: ["General"],
 				},
 				{
 					_id: uuid(),
@@ -81,11 +80,24 @@ export const signupHandler = function (schema, request) {
 					startDate: "2022-07-21",
 					endDate: "2022-08-21",
 					color: "Green",
-					labels: { Label1: "on" },
+					labels: ["General"],
 				},
 			],
-			archives: [],
-			labels: ["Label1"],
+			archives: [
+				{
+					_id: uuid(),
+					name: "Gym",
+					goal: "1 Time",
+					repeat: "Daily",
+					status: "Active",
+					startDate: "2022-07-21",
+					endDate: "2022-08-21",
+					color: "Red",
+					labels: ["General"],
+				},
+			],
+			labels: ["General"],
+			...rest,
 		};
 		const createdUser = schema.users.create(newUser);
 		const encodedToken = sign({ _id, email }, process.env.REACT_APP_JWT_SECRET);
@@ -124,6 +136,7 @@ export const loginHandler = function (schema, request) {
 				process.env.REACT_APP_JWT_SECRET
 			);
 			foundUser.password = undefined;
+
 			return new Response(200, {}, { foundUser, encodedToken });
 		}
 		return new Response(

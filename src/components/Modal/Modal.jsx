@@ -16,21 +16,45 @@ export const Modal = ({ onClose }) => {
 	};
 
 	const handleLabel = (e) => {
-		const { name, value } = e.target;
-		if (value === "on") {
-			// setHabit({ ...habit, labels: habit.labels.concat({ [name]: value }) });
-			setHabit({ ...habit, labels: { ...habit.labels, [name]: value } });
+		const { name, checked } = e.target;
+		console.log(name, checked);
+		console.log(habit.labels);
+		if (checked === true) {
+			setHabit({ ...habit, labels: [...habit.labels].concat(name) });
+		} else {
+			setHabit({
+				...habit,
+				labels: habit.labels.filter((label) => (label !== name ? label : null)),
+			});
 		}
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log(habit);
 		let vali = validate(habit);
 		setFormErrors(vali);
 		if (Object.keys(vali).length === 0) {
 			dispatch(createHabit(habit));
 			onClose();
 		}
+	};
+
+	const handleDummy = (e) => {
+		e.preventDefault();
+		dispatch(
+			createHabit({
+				name: "Discipline equals freedom",
+				startDate: "2022-10-29",
+				endDate: "2022-10-26",
+				goal: "3 Times",
+				repeat: "Monthly",
+				color: "Green",
+				status: "Active",
+				labels: ["General"],
+			})
+		);
+		onClose();
 	};
 
 	const validate = (values) => {
@@ -56,7 +80,7 @@ export const Modal = ({ onClose }) => {
 		if (!values.repeat) {
 			errors.repeat = "Habit's Repition is required";
 		}
-		if (!values.labels.length) {
+		if (values.labels.length === 0) {
 			errors.label = "Habit Label is required";
 		}
 
@@ -66,7 +90,7 @@ export const Modal = ({ onClose }) => {
 	return (
 		<>
 			<div className='Overlay' />
-			<form className='Modal' onSubmit={handleSubmit}>
+			<form className='Modal'>
 				<div className='Modal-form-container'>
 					<div className='Modal-form-heading'>
 						<div>{"New Habit"}</div>
@@ -183,7 +207,8 @@ export const Modal = ({ onClose }) => {
 						</div>
 					</div>
 					<div className='Modal-form-button'>
-						<button>Done</button>
+						<button onClick={handleDummy}>Dummy data</button>
+						<button onClick={handleSubmit}>Done</button>
 					</div>
 				</div>
 			</form>

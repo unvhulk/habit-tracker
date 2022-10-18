@@ -71,10 +71,19 @@
 .Modal-form-button {
 	display: grid;
 	justify-content: end;
-	grid-template-columns: 76% 20% 4%;
+	grid-template-columns: 42% 30% 4% 20% 4%;
 }
-.Modal-form-button button {
+.Modal-form-button :nth-child(1) {
 	grid-column: 2/3;
+	background-color: white;
+	font-family: "Poppins";
+	color: #5348c7;
+	border: none;
+	padding: 1px 10px;
+	cursor: pointer;
+}
+.Modal-form-button :nth-child(2) {
+	grid-column: 4/5;
 	background-color: #5348c7;
 	font-family: "Poppins";
 	color: white;
